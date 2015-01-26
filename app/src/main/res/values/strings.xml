@@ -17,5 +17,6 @@
     <string name="chk_text_butter">Butter</string>
     <string name="btn_text_place_order">Place Order</string>
     <string name="title_activity_confirmation">Confirmation</string>
+    <string name="Lbl_text_success_message">You have successfully placed your order</string>
 
 </resources>
