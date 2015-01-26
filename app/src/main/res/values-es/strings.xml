@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rb_text_white">White</string>
+    <string name="rb_text_wheat">Trigo</string>
+    <string name="action_settings">Configuración</string>
+    <string name="app_name">Tienda de Emparedados</string>
+    <string name="hello_world">Hola Mundo</string>
+    <string name="rb_text_rye">Centeno</string>
+</resources>
