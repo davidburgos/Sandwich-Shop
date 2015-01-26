@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="rb_text_white">White</string>
+    <string name="rb_text_white">Blanco</string>
     <string name="rb_text_wheat">Trigo</string>
     <string name="action_settings">Configuración</string>
     <string name="app_name">Tienda de Emparedados</string>
     <string name="hello_world">Hola Mundo</string>
     <string name="rb_text_rye">Centeno</string>
+    <string name="chk_text_lettuce">Lechuga</string>
+    <string name="chk_text_tomato">Tomate</string>
+    <string name="chk_text_potato_chips">Papas a la Francesa</string>
+    <string name="chk_text_onions">Cebolla</string>
+    <string name="chk_text_bacon">Tocino</string>
+    <string name="chk_text_mayo">Mayonesa</string>
+    <string name="chk_text_ketchup">Salsa de Tomate</string>
+    <string name="chk_text_butter">Mantequilla</string>
+    <string name="btn_text_place_order">Tomar Pedido</string>
 </resources>
