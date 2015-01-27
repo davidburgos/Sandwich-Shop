@@ -1,6 +1,8 @@
 package co.mobilemakers.sandwichshop;
 
 import android.content.Intent;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
 
     ArrayList<String> mSelected = new ArrayList<String>();
+    private final static String FORM_KEY = "FORM_KEY";
 
     protected Button mButton;
     CheckBox mChk1,mChk2,mChk3,mChk4,mChk5,mChk6,
@@ -25,10 +28,72 @@ public class MainActivity extends ActionBarActivity {
     RadioGroup mRadioGroup;
     RadioButton mRadioButton;
 
+
+    private static class FormState implements Parcelable{
+
+        public static Creator<FormState> CREATOR = new Creator<FormState>() {
+            @Override
+            public FormState createFromParcel(Parcel source) {
+                return new FormState(source);
+            }
+
+            @Override
+            public FormState[] newArray(int size) {
+                return new FormState[size];
+            }
+        };
+        private Boolean mCheckBoxState;
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(mCheckBoxState?1:0);
+        }
+
+        FormState(){
+
+        }
+
+        FormState(Parcel source){
+            mCheckBoxState = (source.readInt()==1);
+        }
+
+        public Boolean getmCheckBoxState() {
+            return mCheckBoxState;
+        }
+
+        public void setmCheckBoxState(Boolean mCheckBoxState) {
+            this.mCheckBoxState = mCheckBoxState;
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        FormState formState = new FormState();
+        formState.setmCheckBoxState(mChk1.isChecked());
+        outState.putParcelable(FORM_KEY, formState);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_form);
+
+        if(savedInstanceState != null){
+
+            FormState formState = savedInstanceState.getParcelable(FORM_KEY);
+            if(formState != null){
+                if(formState.getmCheckBoxState()){
+                    mChk1.setChecked(true);
+                }
+            }
+        }
 
         PrepareObjects();
 
