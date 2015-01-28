@@ -24,5 +24,6 @@
     <string name="lbl_title_bread">Bread</string>
     <string name="txt_title_bread">Bread</string>
     <string name="txt_title_toppings">Toppings</string>
+    <string name="txt_title_sandwich">Sandwich N° %s</string>
 
 </resources>

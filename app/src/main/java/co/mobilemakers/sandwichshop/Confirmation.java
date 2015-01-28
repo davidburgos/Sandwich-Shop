@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -19,10 +20,8 @@ public class Confirmation extends ActionBarActivity {
         setContentView(R.layout.activity_confirmation);
 
         TextView mTextView = (TextView)findViewById(R.id.textView2);
-
         ArrayList<String> mSelected = getIntent().getStringArrayListExtra(Intent.EXTRA_TEXT);
         mTextView.setText(TextUtils.join(", ", mSelected));
-
     }
 
 

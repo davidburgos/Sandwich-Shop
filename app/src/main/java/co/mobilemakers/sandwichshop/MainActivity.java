@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,22 +13,25 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    private final static String FORM_KEY = "FORM_KEY";
+    public final static String FORM_KEY = "PARCEABLE_ARRAY_LIST";
     public  final static int MAX_SANDWICH = 3;
     public static int mAmountSelected;
     public static int mCurrentSandwich;
 
     ArrayList<String> mSelected = new ArrayList<String>();
+    static ArrayList<FormState> FormStateList = new ArrayList<FormState>();
 
     protected Button mButton, mBtnContinue;
     CheckBox mChk1,mChk2,mChk3,mChk4,mChk5,mChk6,mChk7,mChk8;
     RadioGroup mRadioGroup;
+    TextView mTextView;
     RadioButton mRadioButton;
 
 
@@ -44,7 +48,17 @@ public class MainActivity extends ActionBarActivity {
                 return new FormState[size];
             }
         };
-        private Boolean mCheckBoxState;
+
+        private int mRadioGroupSelected;
+        private int mCurrentSandwich;
+        private Boolean mCheckBoxState1;
+        private Boolean mCheckBoxState2;
+        private Boolean mCheckBoxState3;
+        private Boolean mCheckBoxState4;
+        private Boolean mCheckBoxState5;
+        private Boolean mCheckBoxState6;
+        private Boolean mCheckBoxState7;
+        private Boolean mCheckBoxState8;
 
         @Override
         public int describeContents() {
@@ -53,7 +67,16 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(mCheckBoxState?1:0);
+            dest.writeInt(mRadioGroupSelected);
+            dest.writeInt(mCurrentSandwich);
+            dest.writeInt(mCheckBoxState1 ?1:0);
+            dest.writeInt(mCheckBoxState2 ?1:0);
+            dest.writeInt(mCheckBoxState3 ?1:0);
+            dest.writeInt(mCheckBoxState4 ?1:0);
+            dest.writeInt(mCheckBoxState5 ?1:0);
+            dest.writeInt(mCheckBoxState6 ?1:0);
+            dest.writeInt(mCheckBoxState7 ?1:0);
+            dest.writeInt(mCheckBoxState8 ?1:0);
         }
 
         FormState(){
@@ -61,15 +84,86 @@ public class MainActivity extends ActionBarActivity {
         }
 
         FormState(Parcel source){
-            mCheckBoxState = (source.readInt()==1);
+            mRadioGroupSelected = (source.readInt());
+            mCurrentSandwich = (source.readInt());
+            mCheckBoxState1 = (source.readInt()==1);
+            mCheckBoxState2 = (source.readInt()==1);
+            mCheckBoxState3 = (source.readInt()==1);
+            mCheckBoxState4 = (source.readInt()==1);
+            mCheckBoxState5 = (source.readInt()==1);
+            mCheckBoxState6 = (source.readInt()==1);
+            mCheckBoxState7 = (source.readInt()==1);
+            mCheckBoxState8 = (source.readInt()==1);
         }
 
-        public Boolean getmCheckBoxState() {
-            return mCheckBoxState;
+        public int getmRadioGroupSelected() {
+            return mRadioGroupSelected;
+        }
+        public void setmRadioGroupSelected(int mRadioGroupSelected) {
+            this.mRadioGroupSelected = mRadioGroupSelected;
         }
 
-        public void setmCheckBoxState(Boolean mCheckBoxState) {
-            this.mCheckBoxState = mCheckBoxState;
+        public int getmCurrentSandwich() {
+            return mCurrentSandwich;
+        }
+        public void setmCurrentSandwich(int mCurrentSandwich) {
+            this.mCurrentSandwich = mCurrentSandwich;
+        }
+
+        public Boolean getmCheckBoxState1() {
+            return mCheckBoxState1;
+        }
+        public void setmCheckBoxState1(Boolean mCheckBoxState1) {
+            this.mCheckBoxState1 = mCheckBoxState1;
+        }
+
+        public Boolean getmCheckBoxState2() {
+            return mCheckBoxState2;
+        }
+        public void setmCheckBoxState2(Boolean mCheckBoxState2) {
+            this.mCheckBoxState2 = mCheckBoxState2;
+        }
+
+        public Boolean getmCheckBoxState3() {
+            return mCheckBoxState3;
+        }
+        public void setmCheckBoxState3(Boolean mCheckBoxState3) {
+            this.mCheckBoxState3 = mCheckBoxState3;
+        }
+
+        public Boolean getmCheckBoxState4() {
+            return mCheckBoxState4;
+        }
+        public void setmCheckBoxState4(Boolean mCheckBoxState4) {
+            this.mCheckBoxState4 = mCheckBoxState4;
+        }
+
+        public Boolean getmCheckBoxState5() {
+            return mCheckBoxState5;
+        }
+        public void setmCheckBoxState5(Boolean mCheckBoxState5) {
+            this.mCheckBoxState5 = mCheckBoxState5;
+        }
+
+        public Boolean getmCheckBoxState6() {
+            return mCheckBoxState6;
+        }
+        public void setmCheckBoxState6(Boolean mCheckBoxState6) {
+            this.mCheckBoxState6 = mCheckBoxState6;
+        }
+
+        public Boolean getmCheckBoxState7() {
+            return mCheckBoxState7;
+        }
+        public void setmCheckBoxState7(Boolean mCheckBoxState7) {
+            this.mCheckBoxState7 = mCheckBoxState7;
+        }
+
+        public Boolean getmCheckBoxState8() {
+            return mCheckBoxState8;
+        }
+        public void setmCheckBoxState8(Boolean mCheckBoxState8) {
+            this.mCheckBoxState8 = mCheckBoxState8;
         }
     }
 
@@ -78,8 +172,20 @@ public class MainActivity extends ActionBarActivity {
         super.onSaveInstanceState(outState);
 
         FormState formState = new FormState();
-        formState.setmCheckBoxState(mChk1.isChecked());
-        outState.putParcelable(FORM_KEY, formState);
+
+        formState.setmRadioGroupSelected(mRadioGroup.getCheckedRadioButtonId());
+        formState.setmCurrentSandwich(mCurrentSandwich);
+        formState.setmCheckBoxState1(mChk1.isChecked());
+        formState.setmCheckBoxState2(mChk2.isChecked());
+        formState.setmCheckBoxState3(mChk3.isChecked());
+        formState.setmCheckBoxState4(mChk4.isChecked());
+        formState.setmCheckBoxState5(mChk5.isChecked());
+        formState.setmCheckBoxState6(mChk6.isChecked());
+        formState.setmCheckBoxState7(mChk7.isChecked());
+        formState.setmCheckBoxState8(mChk8.isChecked());
+
+        FormStateList.add(formState);
+        outState.putParcelableArrayList(FORM_KEY, FormStateList);
     }
 
     @Override
@@ -87,35 +193,58 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_form);
 
-        mAmountSelected = getIntent().getIntExtra(SandwichCount.TAG_TOTAL,3);
+        mAmountSelected = getIntent().getIntExtra(SandwichCount.TAG_TOTAL,1);
         mCurrentSandwich = getIntent().getIntExtra(SandwichCount.TAG_CURRENT,1);
 
         PrepareObjects();
 
+        mTextView.setText(String.format(getResources().getString(R.string.txt_title_sandwich), mCurrentSandwich));
+
         if(mCurrentSandwich < MAX_SANDWICH){
             mBtnContinue.setVisibility(View.VISIBLE);
-            mButton.setVisibility(View.INVISIBLE);
+            mButton.setVisibility(View.GONE);
         }
         else{
-            mBtnContinue.setVisibility(View.INVISIBLE);
+            mBtnContinue.setVisibility(View.GONE);
             mButton.setVisibility(View.VISIBLE);
         }
 
         if(savedInstanceState != null){
+            FormStateList = savedInstanceState.getParcelableArrayList(FORM_KEY);
+            FormState formState = FormStateList.get(FormStateList.size());
 
-            FormState formState = savedInstanceState.getParcelable(FORM_KEY);
             if(formState != null){
-                if(formState.getmCheckBoxState()){
-                    mChk1.setChecked(true);
-                }
+                mRadioGroup.check(formState.getmRadioGroupSelected());
+                mCurrentSandwich = formState.getmCurrentSandwich();
+                if(formState.getmCheckBoxState1()) mChk1.setChecked(true);
+                if(formState.getmCheckBoxState2()) mChk2.setChecked(true);
+                if(formState.getmCheckBoxState3()) mChk3.setChecked(true);
+                if(formState.getmCheckBoxState4()) mChk4.setChecked(true);
+                if(formState.getmCheckBoxState5()) mChk5.setChecked(true);
+                if(formState.getmCheckBoxState6()) mChk6.setChecked(true);
+                if(formState.getmCheckBoxState7()) mChk7.setChecked(true);
+                if(formState.getmCheckBoxState8()) mChk8.setChecked(true);
             }
         }
 
+        mBtnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                intent.putParcelableArrayListExtra(FORM_KEY, FormStateList);
+                intent.putExtra(SandwichCount.TAG_CURRENT, mCurrentSandwich+1);
+                startActivity(intent);
+            }
+        });
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Confirmation = new Intent(MainActivity.this, Confirmation.class);
+
+                Log.d("daburgos", Integer.toString(FormStateList.size()));
+                Confirmation.putParcelableArrayListExtra(FORM_KEY, FormStateList);
+                Confirmation.putExtra(SandwichCount.TAG_CURRENT, mCurrentSandwich);
 
                 mSelected.clear();
                 if(mChk1.isChecked()) mSelected.add(mChk1.getText().toString());
@@ -140,6 +269,7 @@ public class MainActivity extends ActionBarActivity {
         mButton = (Button)findViewById(R.id.button);
         mBtnContinue = (Button)findViewById(R.id.button3);
         mRadioGroup = (RadioGroup)findViewById(R.id.RadioGroup);
+        mTextView =(TextView)findViewById(R.id.textView5);
 
         mChk1 = (CheckBox)findViewById(R.id.checkBox);
         mChk2 = (CheckBox)findViewById(R.id.checkBox2);

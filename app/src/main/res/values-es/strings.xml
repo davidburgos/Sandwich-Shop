@@ -18,7 +18,7 @@
     <string name="Lbl_text_success_message">Su pedido ha sido tomado satisfactoriamente.</string>
     <string name="txt_message_sand_count">Porfavor seleccione el número de sandwiches</string>
     <string name="btn_continue">Continue</string>
-    <string name="lbl_title_bread">Pan</string>
-    <string name="txt_title_bread">Bread</string>
-    <string name="txt_title_toppings">Toppings</string>
+    <string name="txt_title_bread">Pan</string>
+    <string name="txt_title_toppings">Adicionales</string>
+    <string name="txt_title_sandwich">Emparedado N° %s</string>
 </resources>
