@@ -22,5 +22,7 @@
     <string name="txt_message_sand_count">Please select the number of sandwich</string>
     <string name="btn_continue">Continue</string>
     <string name="lbl_title_bread">Bread</string>
+    <string name="txt_title_bread">Bread</string>
+    <string name="txt_title_toppings">Toppings</string>
 
 </resources>

@@ -3,26 +3,64 @@ package co.mobilemakers.sandwichshop;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class SandwichCount extends ActionBarActivity {
+
+    public final static String TAG_TOTAL   = "TOTAL_SANDWICH";
+    public final static String TAG_CURRENT = "CURRENT_SANDWICH";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sandwich_count);
 
-        Button button = (Button)findViewById(R.id.button);
+        final EditText editText = (EditText)findViewById(R.id.editText);
+        final Button button = (Button)findViewById(R.id.button2);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SandwichCount.this,MainActivity.class);
+                intent.putExtra(TAG_TOTAL  , editText.getText().toString());
+                intent.putExtra(TAG_CURRENT, 1);
+                startActivity(intent);
             }
         });
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0) {
+                    if (Integer.valueOf(s.toString()) <= MainActivity.MAX_SANDWICH) {
+                        button.setEnabled(true);
+                    } else {
+                        Toast.makeText(SandwichCount.this, "You can select " + String.valueOf(MainActivity.MAX_SANDWICH) + " Maximum.", Toast.LENGTH_LONG).show();
+                        button.setEnabled(false);
+                    }
+                }
+            }
+        });
+
 
     }
 

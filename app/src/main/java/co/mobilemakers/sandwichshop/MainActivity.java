@@ -14,17 +14,19 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    ArrayList<String> mSelected = new ArrayList<String>();
     private final static String FORM_KEY = "FORM_KEY";
+    public  final static int MAX_SANDWICH = 3;
+    public static int mAmountSelected;
+    public static int mCurrentSandwich;
 
-    protected Button mButton;
-    CheckBox mChk1,mChk2,mChk3,mChk4,mChk5,mChk6,
-             mChk7,mChk8;
+    ArrayList<String> mSelected = new ArrayList<String>();
+
+    protected Button mButton, mBtnContinue;
+    CheckBox mChk1,mChk2,mChk3,mChk4,mChk5,mChk6,mChk7,mChk8;
     RadioGroup mRadioGroup;
     RadioButton mRadioButton;
 
@@ -85,6 +87,20 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_form);
 
+        mAmountSelected = getIntent().getIntExtra(SandwichCount.TAG_TOTAL,3);
+        mCurrentSandwich = getIntent().getIntExtra(SandwichCount.TAG_CURRENT,1);
+
+        PrepareObjects();
+
+        if(mCurrentSandwich < MAX_SANDWICH){
+            mBtnContinue.setVisibility(View.VISIBLE);
+            mButton.setVisibility(View.INVISIBLE);
+        }
+        else{
+            mBtnContinue.setVisibility(View.INVISIBLE);
+            mButton.setVisibility(View.VISIBLE);
+        }
+
         if(savedInstanceState != null){
 
             FormState formState = savedInstanceState.getParcelable(FORM_KEY);
@@ -95,7 +111,6 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-        PrepareObjects();
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +138,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void PrepareObjects() {
         mButton = (Button)findViewById(R.id.button);
+        mBtnContinue = (Button)findViewById(R.id.button3);
         mRadioGroup = (RadioGroup)findViewById(R.id.RadioGroup);
 
         mChk1 = (CheckBox)findViewById(R.id.checkBox);
