@@ -14,7 +14,6 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 
@@ -25,15 +24,13 @@ public class MainActivity extends ActionBarActivity {
     public static int mAmountSelected;
     public static int mCurrentSandwich;
 
-    ArrayList<String> mSelected = new ArrayList<String>();
-    static ArrayList<FormState> FormStateList = new ArrayList<FormState>();
+    ArrayList<String> mSelected = new ArrayList<>();
+    static ArrayList<FormState> FormStateList = new ArrayList<>();
 
     protected Button mButton, mBtnContinue;
     CheckBox mChk1,mChk2,mChk3,mChk4,mChk5,mChk6,mChk7,mChk8;
     RadioGroup mRadioGroup;
     TextView mTextView;
-    RadioButton mRadioButton;
-
 
     private static class FormState implements Parcelable{
 
@@ -167,10 +164,22 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(SandwichCount.LOG_TAG,"formStateList:"+Integer.valueOf(FormStateList.size()));
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        SaveNewStateForm();
 
+        outState.putParcelableArrayList(FORM_KEY, FormStateList);
+    }
+
+    private void SaveNewStateForm() {
         FormState formState = new FormState();
 
         formState.setmRadioGroupSelected(mRadioGroup.getCheckedRadioButtonId());
@@ -185,7 +194,6 @@ public class MainActivity extends ActionBarActivity {
         formState.setmCheckBoxState8(mChk8.isChecked());
 
         FormStateList.add(formState);
-        outState.putParcelableArrayList(FORM_KEY, FormStateList);
     }
 
     @Override
@@ -193,14 +201,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_form);
 
-        mAmountSelected = getIntent().getIntExtra(SandwichCount.TAG_TOTAL,1);
+        mAmountSelected = getIntent().getIntExtra(SandwichCount.TAG_TOTAL,MAX_SANDWICH);
         mCurrentSandwich = getIntent().getIntExtra(SandwichCount.TAG_CURRENT,1);
 
         PrepareObjects();
 
         mTextView.setText(String.format(getResources().getString(R.string.txt_title_sandwich), mCurrentSandwich));
 
-        if(mCurrentSandwich < MAX_SANDWICH){
+        if(mCurrentSandwich < mAmountSelected){
             mBtnContinue.setVisibility(View.VISIBLE);
             mButton.setVisibility(View.GONE);
         }
@@ -232,6 +240,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,MainActivity.class);
                 intent.putParcelableArrayListExtra(FORM_KEY, FormStateList);
+                intent.putExtra(SandwichCount.TAG_TOTAL, mAmountSelected);
                 intent.putExtra(SandwichCount.TAG_CURRENT, mCurrentSandwich+1);
                 startActivity(intent);
             }
@@ -242,23 +251,29 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent Confirmation = new Intent(MainActivity.this, Confirmation.class);
 
-                Log.d("daburgos", Integer.toString(FormStateList.size()));
+                Log.d(SandwichCount.LOG_TAG, Integer.toString(FormStateList.size()));
                 Confirmation.putParcelableArrayListExtra(FORM_KEY, FormStateList);
                 Confirmation.putExtra(SandwichCount.TAG_CURRENT, mCurrentSandwich);
 
                 mSelected.clear();
-                if(mChk1.isChecked()) mSelected.add(mChk1.getText().toString());
-                if(mChk2.isChecked()) mSelected.add(mChk2.getText().toString());
-                if(mChk3.isChecked()) mSelected.add(mChk3.getText().toString());
-                if(mChk4.isChecked()) mSelected.add(mChk4.getText().toString());
-                if(mChk5.isChecked()) mSelected.add(mChk5.getText().toString());
-                if(mChk6.isChecked()) mSelected.add(mChk6.getText().toString());
-                if(mChk7.isChecked()) mSelected.add(mChk7.getText().toString());
-                if(mChk8.isChecked()) mSelected.add(mChk8.getText().toString());
+                int selectedId;
+                for(FormState formState:FormStateList){
 
-                int selectedId = mRadioGroup.getCheckedRadioButtonId();
-                if(selectedId>0) mSelected.add(((RadioButton)findViewById(selectedId)).getText().toString());
+                    mSelected.add("\n"+String.format(getResources().getString(R.string.txt_title_sandwich), formState.getmCurrentSandwich())+":");
 
+                    selectedId = formState.getmRadioGroupSelected();
+                    if(selectedId>0) mSelected.add((getString(R.string.txt_title_bread))+"-"+((RadioButton)findViewById(selectedId)).getText().toString());
+
+                    if(formState.getmCheckBoxState1()) mSelected.add(mChk1.getText().toString());
+                    if(formState.getmCheckBoxState2()) mSelected.add(mChk2.getText().toString());
+                    if(formState.getmCheckBoxState3()) mSelected.add(mChk3.getText().toString());
+                    if(formState.getmCheckBoxState4()) mSelected.add(mChk4.getText().toString());
+                    if(formState.getmCheckBoxState5()) mSelected.add(mChk5.getText().toString());
+                    if(formState.getmCheckBoxState6()) mSelected.add(mChk6.getText().toString());
+                    if(formState.getmCheckBoxState7()) mSelected.add(mChk7.getText().toString());
+                    if(formState.getmCheckBoxState8()) mSelected.add(mChk8.getText().toString());
+
+                }
                 Confirmation.putStringArrayListExtra(Intent.EXTRA_TEXT, mSelected);
                 startActivity(Confirmation);
             }

@@ -17,6 +17,7 @@ public class SandwichCount extends ActionBarActivity {
 
     public final static String TAG_TOTAL   = "TOTAL_SANDWICH";
     public final static String TAG_CURRENT = "CURRENT_SANDWICH";
+    public final static String LOG_TAG = "david.burgos";
 
 
     @Override
@@ -31,7 +32,7 @@ public class SandwichCount extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SandwichCount.this,MainActivity.class);
-                intent.putExtra(TAG_TOTAL  , editText.getText().toString());
+                intent.putExtra(TAG_TOTAL  , Integer.valueOf(editText.getText().toString()));
                 intent.putExtra(TAG_CURRENT, 1);
                 startActivity(intent);
             }
