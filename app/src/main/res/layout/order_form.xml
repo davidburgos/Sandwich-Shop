@@ -5,144 +5,155 @@
         android:layout_height="fill_parent"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" tools:context=".MainActivity"
-        android:padding="16dp">
+        android:layout_alignParentStart="true" tools:context=".MainActivity">
 
-        <TextView
+        <include layout="@layout/toolbar"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_title_sandwich"
-            android:id="@+id/textView5"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:textSize="20dp" />
+            android:id="@+id/toolbar" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/RadioGroup">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView4"
-                android:textStyle="bold"
-                android:text="@string/txt_title_bread" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rb_text_wheat"
-                android:id="@+id/radioButton"
-                android:checked="false" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rb_text_white"
-                android:id="@+id/radioButton2"
-                android:checked="false" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rb_text_rye"
-                android:id="@+id/radioButton3"
-                android:checked="false" />
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_title_toppings"
-            android:id="@+id/textView6"
-            android:paddingTop="15dp"
-            android:textStyle="bold" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_lettuce"
-                android:id="@+id/checkBox"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_tomato"
-                android:id="@+id/checkBox2"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_potato_chips"
-                android:id="@+id/checkBox3"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_onions"
-                android:id="@+id/checkBox4"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_bacon"
-                android:id="@+id/checkBox5"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_mayo"
-                android:id="@+id/checkBox6"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_ketchup"
-                android:id="@+id/checkBox7"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_text_butter"
-                android:id="@+id/checkBox8"
-                android:checked="false" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="bottom|right">
+            android:padding="16dp">
 
-            <Button
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_title_sandwich"
+                android:id="@+id/textView5"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:textSize="20dp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/RadioGroup">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:textStyle="bold"
+                    android:text="@string/txt_title_bread" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rb_text_wheat"
+                    android:id="@+id/radioButton"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rb_text_white"
+                    android:id="@+id/radioButton2"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rb_text_rye"
+                    android:id="@+id/radioButton3"
+                    android:checked="false" />
+
+            </RadioGroup>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_continue"
-                android:id="@+id/button3"
-                android:layout_gravity="bottom|right" />
+                android:text="@string/txt_title_toppings"
+                android:id="@+id/textView6"
+                android:textStyle="bold" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_text_place_order"
-                android:id="@+id/button"
-                android:layout_gravity="bottom|right" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_lettuce"
+                    android:id="@+id/checkBox"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_tomato"
+                    android:id="@+id/checkBox2"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_potato_chips"
+                    android:id="@+id/checkBox3"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_onions"
+                    android:id="@+id/checkBox4"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_bacon"
+                    android:id="@+id/checkBox5"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_mayo"
+                    android:id="@+id/checkBox6"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_ketchup"
+                    android:id="@+id/checkBox7"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chk_text_butter"
+                    android:id="@+id/checkBox8"
+                    android:checked="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="bottom|right">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_continue"
+                    android:id="@+id/button3"
+                    android:layout_gravity="bottom|right" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_text_place_order"
+                    android:id="@+id/button"
+                    android:layout_gravity="bottom|right" />
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ public class MainActivity extends ActionBarActivity {
 
     protected Button mButton, mBtnContinue;
     CheckBox mChk1,mChk2,mChk3,mChk4,mChk5,mChk6,mChk7,mChk8;
+    Toolbar mToolbar;
     RadioGroup mRadioGroup;
     TextView mTextView;
 
@@ -206,6 +208,8 @@ public class MainActivity extends ActionBarActivity {
 
         PrepareObjects();
 
+        setSupportActionBar(mToolbar);
+
         mTextView.setText(String.format(getResources().getString(R.string.txt_title_sandwich), mCurrentSandwich));
 
         if(mCurrentSandwich < mAmountSelected){
@@ -285,6 +289,7 @@ public class MainActivity extends ActionBarActivity {
         mBtnContinue = (Button)findViewById(R.id.button3);
         mRadioGroup = (RadioGroup)findViewById(R.id.RadioGroup);
         mTextView =(TextView)findViewById(R.id.textView5);
+        mToolbar = (Toolbar)findViewById(R.id.toolbar);
 
         mChk1 = (CheckBox)findViewById(R.id.checkBox);
         mChk2 = (CheckBox)findViewById(R.id.checkBox2);
